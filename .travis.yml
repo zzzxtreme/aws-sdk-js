@@ -13,7 +13,16 @@ script:
 env:
   matrix:
     - COVERAGE=1
+    - BROWSER="safari:5.1"
+    - BROWSER="safari:6"
+    - BROWSER="safari:7"
+    - BROWSER="firefox"
+    - BROWSER="firefox:23"
+    - BROWSER="android"
     - BROWSER="chrome"
+    - BROWSER="chrome:28"
+    - BROWSER="internet explorer:10"
+    - BROWSER="internet explorer:11"
 
 sudo: false
 
