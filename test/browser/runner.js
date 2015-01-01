@@ -8,7 +8,7 @@ var webdriver = require('selenium-webdriver'),
     };
 
 var driver, url;
-if (process.env.CI) {
+if (process.env.CI && process.env.BROWSER) {
   var browser = process.env.BROWSER.split(':');
   var server = 'http://localhost:4445/wd/hub';
   var caps = new webdriver.Capabilities();
