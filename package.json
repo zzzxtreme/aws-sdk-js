@@ -24,6 +24,9 @@
       "mocha": "*",
       "chai": "*",
       "istanbul": "*",
+      "selenium-webdriver": "*",
+      "connect": "*",
+      "serve-static": "*",
       "coveralls": "2.x"
     },
     "dependencies": {
