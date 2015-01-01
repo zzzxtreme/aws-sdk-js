@@ -40,7 +40,7 @@ if (process.env.CI && process.env.BROWSER) {
 }
 
 var index = 0, failed = 0;
-function printStatus() {
+function poll() {
   var script = 'return [jsApiReporter.finished, jsApiReporter.specs()]';
   driver.executeScript(script).then(function(result) {
     var isDone = result[0], items = result[1];
@@ -54,29 +54,40 @@ function printStatus() {
       }
       process.stdout.write(item);
     }
-    if (!isDone) setTimeout(printStatus, 10);
+    if (isDone) {
+      console.log('\n\n' + index + ' specs, ' + failed + ' failures');
+      if (failed > 0) printErrors(items);
+      driver.quit().then(function() { process.exit(failed); });
+    } else {
+      setTimeout(poll, 10);
+    }
   });
 }
 
-driver.get(url);
-printStatus();
+function printErrors(items) {
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (item.status === 'failed') {
+      for (var f = 0; f < item.failedExpectations.length; f++) {
+        var fail = item.failedExpectations[f];
+        console.log('\n' + (i+1) + '.' + (f+1) + ') ' + item.fullName + '\n');
+        console.log(fail.message);
 
-var condition = until.elementLocated(By.css('.alert .bar'));
-driver.wait(condition).then(function() {
-  console.log('\n');
-  driver.findElement({css: '.alert .bar'}).getText().then(console.log);
-  driver.findElements({css: '.failures .spec-detail.failed'}).then(function(els) {
-    console.log('\n');
-    els.forEach(function(el, i) {
-      el.findElement({css: '.description'}).getText().then(function(text) {
-        console.log((i+1) + ') ' + text.replace(/\n/g, '') + '\n');
-      });
-      el.findElement({css: '.stack-trace'}).getText().then(function(text) {
-        var lines = text.split('\n');
-        var extra = lines.length > 6 ? '\n    ...' : '';
-        console.log(lines.slice(0, 6).join('\n') + extra);
-      });
-    });
-  });
-});
-driver.quit().then(function() { process.exit(failed); });
+        if (fail.stack !== '') {
+          console.log('');
+          var stack = fail.stack.split('\n');
+          for (var x = 0; x < 6 && x < stack.length; x++) {
+            console.log('    ' + stack[x].trim());
+          }
+          if (stack.length > 6) {
+            console.log('    ...');
+          }
+        }
+      }
+    }
+  }
+  console.log('');
+}
+
+driver.get(url);
+poll();
