@@ -73,7 +73,7 @@ function printErrors(items) {
         console.log('\n' + (i+1) + '.' + (f+1) + ') ' + item.fullName + '\n');
         console.log(fail.message);
 
-        if (fail.stack !== '') {
+        if (fail.stack && fail.stack !== '') {
           console.log('');
           var stack = fail.stack.split('\n');
           for (var x = 0; x < 6 && x < stack.length; x++) {
