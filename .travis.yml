@@ -19,16 +19,19 @@ after_script:
 env:
   matrix:
     - COVERAGE=1
-    - BROWSER="safari:5"
-    - BROWSER="safari:6"
-    - BROWSER="safari:7"
-    - BROWSER="firefox" RUN_DELAY=30
-    - BROWSER="firefox:23:windows 7" RUN_DELAY=30
-    - BROWSER="android" RUN_DELAY=30
-    - BROWSER="chrome" RUN_DELAY=30
-    - BROWSER="chrome:28" RUN_DELAY=30
+    - BROWSER="chrome"
+    - BROWSER="chrome:28"
+    - BROWSER="firefox"
+    - BROWSER="firefox:23:windows 7"
     - BROWSER="internet explorer:10" RUN_DELAY=30
     - BROWSER="internet explorer:11" RUN_DELAY=30
+    - BROWSER="safari:5" RUN_DELAY=30
+    - BROWSER="safari:6" RUN_DELAY=30
+    - BROWSER="safari:7" RUN_DELAY=30
+    - BROWSER="safari:8" RUN_DELAY=30
+    - BROWSER="android" RUN_DELAY=30
+    - BROWSER="android:4.3" RUN_DELAY=30
+    - BROWSER="iphone" RUN_DELAY=30
 
 sudo: false
 
