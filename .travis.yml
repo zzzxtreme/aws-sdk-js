@@ -5,6 +5,7 @@ node_js:
 
 before_install:
   - "if [[ `node -v` == v0.8.* ]]; then npm install -g npm || exit 0; fi"
+  - "if [ \"$RUN_DELAY\" ]; then sleep $RUN_DELAY; fi"
 
 script:
   - "if [ \"$BROWSER\" ]; then npm run browsertest; else npm test; fi"
@@ -16,13 +17,13 @@ env:
     - BROWSER="safari:5.1"
     - BROWSER="safari:6"
     - BROWSER="safari:7"
-    - BROWSER="firefox"
-    - BROWSER="firefox:23:windows 7"
-    - BROWSER="android"
-    - BROWSER="chrome"
-    - BROWSER="chrome:28"
-    - BROWSER="internet explorer:10"
-    - BROWSER="internet explorer:11"
+    - BROWSER="firefox" RUN_DELAY=90
+    - BROWSER="firefox:23:windows 7" RUN_DELAY=90
+    - BROWSER="android" RUN_DELAY=90
+    - BROWSER="chrome" RUN_DELAY=90
+    - BROWSER="chrome:28" RUN_DELAY=180
+    - BROWSER="internet explorer:10" RUN_DELAY=180
+    - BROWSER="internet explorer:11" RUN_DELAY=180
 
 sudo: false
 
