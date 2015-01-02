@@ -4,7 +4,7 @@ AWS = helpers.AWS
 describe 'AWS.SQS', ->
   sqs = null
   beforeEach ->
-    sqs = new AWS.SQS params: QueueUrl: 'http://url'
+    sqs = new AWS.SQS maxRetries: 0, params: QueueUrl: 'http://url'
 
   checksumValidate = (operation, input, response, shouldPass, cb) ->
     helpers.mockHttpResponse 200, {}, response
