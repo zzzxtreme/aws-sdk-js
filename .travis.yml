@@ -6,7 +6,6 @@ node_js:
 before_install:
   - "if [[ `node -v` == v0.8.* ]]; then npm install -g npm || exit 0; fi"
   - "if [ \"$BROWSER\" ]; then ruby -run -e httpd test/browser -p 8081 & fi"
-  - "if [ \"$RUN_DELAY\" ]; then sleep $RUN_DELAY; fi"
 
 script:
   - "if [ \"$BROWSER\" ]; then npm run browsertest; else kill `lsof -i:4445 -t` 2>/dev/null || true; npm test; fi"
@@ -23,15 +22,15 @@ env:
     - BROWSER="chrome:28"
     - BROWSER="firefox"
     - BROWSER="firefox:23:windows 7"
-    - BROWSER="internet explorer:10" RUN_DELAY=30
-    - BROWSER="internet explorer:11" RUN_DELAY=30
-    - BROWSER="safari:5" RUN_DELAY=30
-    - BROWSER="safari:6" RUN_DELAY=30
-    - BROWSER="safari:7" RUN_DELAY=30
-    - BROWSER="safari:8" RUN_DELAY=30
-    - BROWSER="android" RUN_DELAY=30
-    - BROWSER="android:4.3" RUN_DELAY=30
-    - BROWSER="iphone" RUN_DELAY=30
+    - BROWSER="internet explorer:10"
+    - BROWSER="internet explorer:11"
+    - BROWSER="safari:5"
+    - BROWSER="safari:6"
+    - BROWSER="safari:7"
+    - BROWSER="safari:8"
+    - BROWSER="android"
+    - BROWSER="android:4.3"
+    - BROWSER="iphone"
 
 sudo: false
 
