@@ -29,7 +29,7 @@ if (process.env.CI && process.env.BROWSER) {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
   }).build();
 
-  url = 'http://localhost:9095/runner.html';
+  url = 'http://localhost:8081/runner.html';
 } else {
   driver = new browsers[process.env.BROWSER || 'phantomjs'].Driver();
   url = 'file://' + __dirname + '/runner.html'
