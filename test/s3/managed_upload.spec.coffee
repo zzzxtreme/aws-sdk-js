@@ -3,7 +3,7 @@ AWS = helpers.AWS
 
 body = (size) ->
   try
-    return new Blob([new Uint8Array(size)])
+    return new Blob((0 for i in [0..size]))
   catch e
     return new AWS.util.Buffer(size)
 
