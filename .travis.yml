@@ -5,7 +5,7 @@ node_js:
 
 before_install:
   - "if [[ `node -v` == v0.8.* ]]; then npm install -g npm || exit 0; fi"
-  - "if [ \"$BROWSER\" ]; then ruby -run -e httpd test/browser -p 8081 &; fi"
+  - "if [ \"$BROWSER\" ]; then ruby -run -e httpd test/browser -p 8081 & fi"
   - "if [ \"$RUN_DELAY\" ]; then sleep $RUN_DELAY; fi"
 
 script:
