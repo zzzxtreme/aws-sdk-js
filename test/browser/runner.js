@@ -41,7 +41,8 @@ if (process.env.CI && process.env.BROWSER) {
 
 var index = 0, failed = 0;
 function poll() {
-  var script = 'return [jsApiReporter.finished, jsApiReporter.specs()]';
+  var script = 'return typeof jsApiReporter === "object" ? ' +
+    '[jsApiReporter.finished, jsApiReporter.specs()] : [false, []]';
   driver.executeScript(script).then(function(result) {
     var isDone = result[0], items = result[1];
     for (; index < items.length; index++) {
