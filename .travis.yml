@@ -17,13 +17,13 @@ env:
     - BROWSER="safari:5.1"
     - BROWSER="safari:6"
     - BROWSER="safari:7"
-    - BROWSER="firefox" RUN_DELAY=90
-    - BROWSER="firefox:23:windows 7" RUN_DELAY=90
-    - BROWSER="android" RUN_DELAY=90
-    - BROWSER="chrome" RUN_DELAY=90
-    - BROWSER="chrome:28" RUN_DELAY=180
-    - BROWSER="internet explorer:10" RUN_DELAY=180
-    - BROWSER="internet explorer:11" RUN_DELAY=180
+    - BROWSER="firefox" RUN_DELAY=15
+    - BROWSER="firefox:23:windows 7" RUN_DELAY=15
+    - BROWSER="android" RUN_DELAY=15
+    - BROWSER="chrome" RUN_DELAY=15
+    - BROWSER="chrome:28" RUN_DELAY=15
+    - BROWSER="internet explorer:10" RUN_DELAY=15
+    - BROWSER="internet explorer:11" RUN_DELAY=15
 
 sudo: false
 
