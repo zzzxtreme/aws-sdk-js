@@ -89,5 +89,4 @@ function printErrors(items) {
   console.log('');
 }
 
-driver.get(url);
-poll();
+driver.get(url).then(poll);
