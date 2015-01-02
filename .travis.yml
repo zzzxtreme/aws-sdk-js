@@ -14,7 +14,7 @@ script:
 env:
   matrix:
     - COVERAGE=1
-    - BROWSER="safari:5.1"
+    - BROWSER="safari:5"
     - BROWSER="safari:6"
     - BROWSER="safari:7"
     - BROWSER="firefox" RUN_DELAY=15
