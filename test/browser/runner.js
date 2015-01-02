@@ -29,7 +29,11 @@ if (process.env.CI && process.env.BROWSER) {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
   }).build();
 
-  url = 'http://localhost:8081/runner.html';
+  // launch local server
+  var connect = require('connect');
+  var serveStatic = require('serve-static');
+  connect().use(serveStatic(__dirname)).listen(9095);
+  url = 'http://localhost:9095/runner.html';
 } else {
   driver = new browsers[process.env.BROWSER || 'phantomjs'].Driver();
   url = 'file://' + __dirname + '/runner.html'
