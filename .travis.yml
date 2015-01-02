@@ -17,7 +17,7 @@ env:
     - BROWSER="safari:6"
     - BROWSER="safari:7"
     - BROWSER="firefox"
-    - BROWSER="firefox:23"
+    - BROWSER="firefox:23:windows 7"
     - BROWSER="android"
     - BROWSER="chrome"
     - BROWSER="chrome:28"
