@@ -27,8 +27,6 @@ env:
     - BROWSER="android:4.3"
     - BROWSER="iphone"
 
-sudo: false
-
 addons:
   sauce_connect:
     username:
