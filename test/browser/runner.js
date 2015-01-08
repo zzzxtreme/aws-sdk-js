@@ -7,7 +7,7 @@ var webdriver = require('selenium-webdriver'),
       phantomjs: require('selenium-webdriver/phantomjs')
     };
 
-var driver, url;
+var driver;
 if (process.env.CI && process.env.BROWSER) {
   var browser = process.env.BROWSER.split(':');
   var server = 'http://localhost:4445/wd/hub';
@@ -32,11 +32,12 @@ if (process.env.CI && process.env.BROWSER) {
   // launch local server
   var connect = require('connect');
   var serveStatic = require('serve-static');
-  connect().use(serveStatic(__dirname)).listen(9095);
-  url = 'http://localhost:9095/runner.html';
+  connect().use(serveStatic(__dirname)).listen(9095, '127.0.0.1', function() {
+    begin('http://localhost:9095/runner.html');
+  });
 } else {
   driver = new browsers[process.env.BROWSER || 'phantomjs'].Driver();
-  url = 'file://' + __dirname + '/runner.html'
+  begin('file://' + __dirname + '/runner.html');
 }
 
 var index = 0, failed = 0;
@@ -90,4 +91,6 @@ function printErrors(items) {
   console.log('');
 }
 
-driver.get(url).then(poll);
+function begin(url) {
+  driver.get(url).then(poll);
+}
