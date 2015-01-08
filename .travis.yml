@@ -22,7 +22,6 @@ env:
     - BROWSER="safari:5"
     - BROWSER="safari:6"
     - BROWSER="safari:7"
-    - BROWSER="safari:8"
     - BROWSER="android"
     - BROWSER="android:4.3"
     - BROWSER="iphone"
